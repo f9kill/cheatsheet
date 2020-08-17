@@ -1,0 +1,14 @@
++---------------------------------------------------------+
+| Informações de rede                                     |
++---------------------------------------------------------+
+
+net view -> lista os computadores do dominio.
+net view \\127.0.0.1 -> lista o compartilhamentos locais.
+net view /domain -> lista todos os compartilhamentos no domínio.
+net view /domain:<nome dominio> -> lista os compartilhamentos do domínio indicado.
+
+net user -> lista todos os usuários locais.
+net user <nome usuário> -> Mostra informações do usuário.
+
+net group -> lista todos os grupos.
+net group Administradores jose /add -> adiciona jose ao grupo Administradores.
