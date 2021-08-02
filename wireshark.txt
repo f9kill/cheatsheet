@@ -1,0 +1,23 @@
+Filtros
+---
+
+# Mostrar pacotes que contenha op IP informado.
+    ip.addr == 192.168.1.1
+
+# Mostrar pacotes que tenha o IP de origem informado.
+    ip.src == 192.168.1.1
+
+# Mostrar pacotes que tenha o IP de destino informado.
+    ip.dst == 192.168.1.1
+
+# Mostra pacote que usam a porta informada.
+    tcp.port == 21
+
+# Procura no conteudo dos pacotes TCP.
+    tcp contains (palavra)
+
+# Mostra as requisições http.
+    http.request
+
+# Procura por palavras na URL
+    http.request.uri contains (palavra)

